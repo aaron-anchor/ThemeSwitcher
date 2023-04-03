@@ -5,17 +5,23 @@ class ParentViewController: UIViewController {
     private let themes = [Theme.red, Theme.green, Theme.blue]
     private let themeSwitcherControl = UISegmentedControl()
     private let childViewController = ChildViewController()
-    private let childSwiftUIController = ChildSwitUIController(rootView: ChildView())
+    private let childSwiftUIController = ChildSwitUIController(
+        rootView: ChildView()
+    )
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        view.backgroundColor = ThemeManager.shared.currentTheme.backgroundColor
 
         setupThemeSwitcher()
         setupChildViewController(childViewController)
         setupChildViewController(childSwiftUIController)
         setupLayout()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        view.backgroundColor = ThemeManager.shared.currentTheme.backgroundColor
     }
 
     func setupThemeSwitcher() {

@@ -1,20 +1,15 @@
 import UIKit
 
 class ChildViewController: UIViewController {
-
     private let label = UILabel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = ThemeManager.shared.currentTheme.backgroundColor
-
         view.layer.cornerRadius = 4.0
-        view.layer.borderColor = ThemeManager.shared.currentTheme.foregroundColor.cgColor
         view.layer.borderWidth = 2.0
 
-        label.textColor = ThemeManager.shared.currentTheme.foregroundColor
-        label.text = "Hello World!"
+        label.text = "🤖 UIKit"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
         
@@ -27,6 +22,14 @@ class ChildViewController: UIViewController {
                 label.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 1.0)
             ]
         )
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        label.textColor = ThemeManager.shared.currentTheme.foregroundColor
+        view.backgroundColor = ThemeManager.shared.currentTheme.backgroundColor
+        view.layer.borderColor = ThemeManager.shared.currentTheme.borderColor.cgColor
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
