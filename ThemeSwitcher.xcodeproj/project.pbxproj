@@ -18,6 +18,7 @@
 		84665A8829DB3B4700F23E10 /* ThemeSwitcherUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84665A8729DB3B4700F23E10 /* ThemeSwitcherUITestsLaunchTests.swift */; };
 		84665A9529DB3FAF00F23E10 /* ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84665A9429DB3FAF00F23E10 /* ChildViewController.swift */; };
 		84665A9729DB418500F23E10 /* ChildSwiftUIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84665A9629DB418500F23E10 /* ChildSwiftUIController.swift */; };
+		84665A9929DB4DC200F23E10 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84665A9829DB4DC200F23E10 /* Theme.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		84665A8729DB3B4700F23E10 /* ThemeSwitcherUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeSwitcherUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		84665A9429DB3FAF00F23E10 /* ChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildViewController.swift; sourceTree = "<group>"; };
 		84665A9629DB418500F23E10 /* ChildSwiftUIController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildSwiftUIController.swift; sourceTree = "<group>"; };
+		84665A9829DB4DC200F23E10 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 				84665A6829DB3B4600F23E10 /* ParentViewController.swift */,
 				84665A9429DB3FAF00F23E10 /* ChildViewController.swift */,
 				84665A9629DB418500F23E10 /* ChildSwiftUIController.swift */,
+				84665A9829DB4DC200F23E10 /* Theme.swift */,
 				84665A6A29DB3B4600F23E10 /* Main.storyboard */,
 				84665A6D29DB3B4700F23E10 /* Assets.xcassets */,
 				84665A6F29DB3B4700F23E10 /* LaunchScreen.storyboard */,
@@ -267,6 +270,7 @@
 				84665A6929DB3B4600F23E10 /* ParentViewController.swift in Sources */,
 				84665A9729DB418500F23E10 /* ChildSwiftUIController.swift in Sources */,
 				84665A6529DB3B4600F23E10 /* AppDelegate.swift in Sources */,
+				84665A9929DB4DC200F23E10 /* Theme.swift in Sources */,
 				84665A6729DB3B4600F23E10 /* SceneDelegate.swift in Sources */,
 				84665A9529DB3FAF00F23E10 /* ChildViewController.swift in Sources */,
 			);

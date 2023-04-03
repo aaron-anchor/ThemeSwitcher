@@ -2,14 +2,15 @@ import UIKit
 
 class ParentViewController: UIViewController {
 
-    private let themeSwitcher = UISegmentedControl()
+    private let themes = [Theme.red, Theme.green, Theme.blue]
+    private let themeSwitcherControl = UISegmentedControl()
     private let childViewController = ChildViewController()
     private let childSwiftUIController = ChildSwitUIController(rootView: ChildView())
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .systemGreen
+        view.backgroundColor = ThemeManager.shared.currentTheme.backgroundColor
 
         setupThemeSwitcher()
         setupChildViewController(childViewController)
@@ -18,12 +19,13 @@ class ParentViewController: UIViewController {
     }
 
     func setupThemeSwitcher() {
-        themeSwitcher.addTarget(self, action: #selector(themeSwitched), for: .valueChanged)
-        themeSwitcher.translatesAutoresizingMaskIntoConstraints = false
-        themeSwitcher.insertSegment(withTitle: "Red", at: 0, animated: false)
-        themeSwitcher.insertSegment(withTitle: "Green", at: 1, animated: false)
-        themeSwitcher.insertSegment(withTitle: "Blue", at: 2, animated: false)
-        view.addSubview(themeSwitcher)
+        themeSwitcherControl.addTarget(self, action: #selector(themeSwitched(_:)), for: .valueChanged)
+        themeSwitcherControl.translatesAutoresizingMaskIntoConstraints = false
+        themes.enumerated().forEach { index, theme in
+            themeSwitcherControl.insertSegment(withTitle: theme.rawValue, at: index, animated: false)
+        }
+        themeSwitcherControl.selectedSegmentIndex = 0
+        view.addSubview(themeSwitcherControl)
     }
 
     func setupChildViewController(_ child: UIViewController) {
@@ -36,14 +38,14 @@ class ParentViewController: UIViewController {
     func setupLayout() {
         NSLayoutConstraint.activate(
             [
-                themeSwitcher.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40.0),
-                themeSwitcher.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 60.0),
-                themeSwitcher.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -60.0),
-                themeSwitcher.heightAnchor.constraint(equalToConstant: 40),
+                themeSwitcherControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40.0),
+                themeSwitcherControl.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 60.0),
+                themeSwitcherControl.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -60.0),
+                themeSwitcherControl.heightAnchor.constraint(equalToConstant: 40),
 
                 childViewController.view.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 60.0),
                 childViewController.view.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -60.0),
-                childViewController.view.topAnchor.constraint(equalTo: themeSwitcher.bottomAnchor, constant: 40.0),
+                childViewController.view.topAnchor.constraint(equalTo: themeSwitcherControl.bottomAnchor, constant: 40.0),
                 childViewController.view.bottomAnchor.constraint(equalTo: childSwiftUIController.view.topAnchor, constant: -60.0),
 
                 childSwiftUIController.view.heightAnchor.constraint(equalTo: childViewController.view.heightAnchor, multiplier: 1.0),
@@ -55,8 +57,10 @@ class ParentViewController: UIViewController {
     }
 
     @objc
-    func themeSwitched() {
-        print("theme switched")
+    func themeSwitched(_ segmentControl: UISegmentedControl) {
+        let theme = themes[segmentControl.selectedSegmentIndex]
+
+        ThemeManager.shared.setTheme(theme)
     }
 
     // MARK: - Trait Collection stuffs
